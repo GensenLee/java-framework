@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+	  <groupId>org.devops</groupId>
+	  <artifactId>devops-parent</artifactId>
+	  <version>6.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>devops-java-framework</artifactId>
+
+    <name>java-framework</name>
+    <packaging>pom</packaging>
+    <version>5.0.0</version>
+
+
+    <dependencyManagement>
+
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus</name>
+            <url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>maven-jetty-plugin</artifactId>
+                    <version>${jetty.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <modules>
+        <module>parent</module>
+        <module>core/devops-core-utils</module>
+        <module>core/devops-core-model</module>
+        <module>core/devops-core-ie</module>
+        <module>mjar/devops-mjar-autotest</module>
+        <module>mjar/devops-mjar-ext</module>
+        <module>mjar/devops-mjar-message</module>
+        <module>mjar/devops-mjar-weixin</module>
+        <module>mjar/devops-mjar-live-core</module>
+        <module>mjar/devops-mjar-live-polyv</module>
+        <module>mjar/devops-mjar-live-transform</module>
+        <module>iweb/devops-iweb-api</module>
+        <module>iweb/devops-iweb-auth</module>
+        <module>iweb/devops-iweb-file</module>
+        <module>iweb/devops-iweb-xxl</module>
+        <module>iweb/devops-iweb-operationlog</module>
+        <module>tool/devops-tool-autocode</module>
+        <module>tool/devops-tool-main</module>
+        <module>web/devops-web-test</module>
+        <module>web/devops-web-template</module>
+    </modules>
+
+
+</project>

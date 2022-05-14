@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: devops-web-template
+  profiles:
+    active: '@spring.profiles.active@'
+  main:
+    allow-bean-definition-overriding: true
+
+#<editor-fold desc="xxl-job配置">
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:${server.port}/xxl-job-admin
+    executor:
+      appname: xxl-job-executor-live
+      ip: null
+      port: 9999
+      logpath: /data/logs/live/xxl-job-admin
+      logretentiondays: -1
+    accessToken: xxl-job-admin-sinmn
+  login:
+    username: admin
+    password: admin123456
+#</editor-fold>
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 2000
+      maximumSize: 2000
+      queueSizeRejectionThreshold: 2000
+      keepAliveTimeMinutes: 1
+      allowMaximumSizeToDivergeFromCoreSize: true
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

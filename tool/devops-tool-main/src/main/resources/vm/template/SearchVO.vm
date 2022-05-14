@@ -1,0 +1,20 @@
+package ${table.getPackages()};
+
+import org.devops.core.utils.vo.BaseSearchVO;
+
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+#foreach($v in $table.getImportList())
+${v}
+#end
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(description = "${table.getComment()}搜索")
+public class $table.getClassName()SearchVO extends BaseSearchVO{
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+}

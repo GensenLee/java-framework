@@ -1,0 +1,58 @@
+package ${table.getPackages()};
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.devops.core.model.annotation.Column;
+import org.devops.core.model.annotation.Table;
+import org.devops.core.utils.verify.VerifyField;
+import org.devops.core.utils.vo.BaseBean;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+#foreach($v in $table.getImportList())
+	${v}
+#end
+
+@Table(table="${table.getName()}",create=true,comment="${table.getComment()}",parametric=true)
+@Data
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(description="${table.getComment()}")
+public class $table.getClassName() extends BaseBean{
+    /**
+    *
+    */
+    private static final long serialVersionUID = 1L;
+
+#foreach($v in $table.getItems())
+    /** $v.comment */
+    public static final String $v.getBigJavaName() = "${v.name}";
+#end
+
+	@SuppressWarnings("serial")
+	public static List<$table.getClassName()> init(){
+		return new ArrayList<$table.getClassName()>(){{
+		}};
+	}
+
+#foreach($v in $table.getItems())
+	#if($v.priKey)
+	/** $v.comment */
+	@Column(name = "${v.name}",jdbcType="${v.origType}",priKey=true,#if($v.autoIncrement)autoIncrement=true,#end comment="${v.comment}")
+	@ApiModelProperty("${v.comment}")
+	@VerifyField(value="${v.comment}",ignore = true)
+	private $v.jtype $v.getJavaName();
+	#else
+	/** $v.comment */
+	@Column(name = "${v.name}",jdbcType="${v.origType}",notNull=${v.getIsNotNull()},def="${v.def}",extra="${v.extra}",comment="${v.comment}")
+	@ApiModelProperty("${v.comment}")
+	@VerifyField(value="${v.comment}",ignore = true)
+	private $v.jtype $v.getJavaName();
+	#end
+
+#end
+}

@@ -1,0 +1,65 @@
+package org.devops.iweb.auth.resource;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * @author xhz
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD,ElementType.TYPE})
+@Documented
+public @interface AuthResource {
+	
+	/**
+	 * 链接
+	 */
+	int LINK = 1;
+	/**
+	 * 按钮
+	 */
+	int BUTTON = 2;
+	
+	/**
+	 * 无 
+	 */
+	int NONE = 3;
+
+	/**
+	 * 父资源
+	 */
+	String parent() default "";
+	
+	/**
+	 * 子资源
+	 */
+	String name() default "";
+	
+	/**
+	 * 系统id
+	 */
+	long appId() default -1L;
+	
+	/**
+	 * 系统编码
+	 */
+	String appCode() default "";
+	
+	/**
+	 * 编码
+	 */
+	String code() default "";
+	
+	/**
+	 * 类型 1链接 2按钮 3无
+	 */
+	int type() default 1;
+	
+	/**
+	 * 忽略跨APP限制，默认不允许跨APP
+	 */
+	boolean ignoreApp() default false;
+}

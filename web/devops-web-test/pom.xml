@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.devops.web</groupId>
+  	<artifactId>devops-web-test</artifactId>
+  	<packaging>jar</packaging>
+  	<name>${project.artifactId}</name>
+	<description>管理后台</description>
+    <version>6.0.0-SNAPSHOT</version>
+
+    <parent>
+		<groupId>org.devops</groupId>
+		<artifactId>devops-parent</artifactId>
+		<version>6.0.0-SNAPSHOT</version>
+	 </parent>
+  
+	<dependencies>
+	
+		<!-- spring boot start -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+		<!-- spring boot end -->
+		
+        <!-- devops-core start-->
+        <dependency>
+		    <groupId>org.devops.core</groupId>
+		    <artifactId>devops-core-utils</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.devops.core</groupId>
+		    <artifactId>devops-core-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.devops.iweb</groupId>
+			<artifactId>devops-iweb-xxl</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.devops.iweb</groupId>
+			<artifactId>devops-iweb-auth</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-file</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-operationlog</artifactId>
+        </dependency>
+
+         <dependency>
+		     <groupId>org.devops.mjar</groupId>
+             <artifactId>devops-mjar-autotest</artifactId>
+             <scope>test</scope>
+         </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-message</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-weixin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar.live</groupId>
+            <artifactId>devops-mjar-live-polyv</artifactId>
+        </dependency>
+
+
+
+        <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
+        <!--
+        <dependency>
+		 <groupId>org.springframework.boot</groupId>
+		 <artifactId>spring-boot-devtools</artifactId>
+		 <optional>true</optional> 
+		</dependency>
+		
+		 -->
+    </dependencies>
+
+	<build>
+        <finalName>devops-web-test</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>sit</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>sit</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>uat</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>prd</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

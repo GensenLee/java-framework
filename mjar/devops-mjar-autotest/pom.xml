@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.devops.mjar</groupId>
+	<artifactId>devops-mjar-autotest</artifactId>
+	 
+	<parent>
+		<groupId>org.devops</groupId>
+		<artifactId>devops-parent</artifactId>
+		<version>6.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-source-plugin</artifactId>
+			  <executions>
+			    <execution>
+			      <id>attach-sources</id>
+			      <phase>install</phase>
+			      <goals>
+			        <goal>jar</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
+			
+			<plugin>  
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>  
+                <executions>  
+                    <execution>  
+                        <id>deploy</id>  
+                        <phase>deploy</phase>  
+                        <goals>  
+                            <goal>deploy</goal>  
+                        </goals>  
+                    </execution>  
+                </executions>  
+            </plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.devops.core</groupId>
+			<artifactId>devops-core-utils</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.devops.core</groupId>
+			<artifactId>devops-core-model</artifactId>
+		</dependency>
+		
+		<!-- 单元测试依赖包 -->
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+		</dependency> 
+		<dependency>
+		    <groupId>org.hamcrest</groupId>
+		    <artifactId>hamcrest-core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.hamcrest</groupId>
+		    <artifactId>hamcrest-library</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.json</groupId>
+					<artifactId>json</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.skyscreamer</groupId>
+					<artifactId>jsonassert</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- mock数据 start-->
+		<dependency>
+	    	<groupId>com.github.jsonzou</groupId>
+	     	<artifactId>jmockdata</artifactId>
+	     	<version>4.2.0</version>
+	    </dependency>
+	    <!-- mock数据 end-->
+
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</pluginRepository>
+	</pluginRepositories> 
+</project>

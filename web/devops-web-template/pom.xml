@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.devops</groupId>
+        <artifactId>devops-parent</artifactId>
+        <version>6.0.0-SNAPSHOT</version>
+    </parent>
+    <groupId>org.devops.web</groupId>
+    <artifactId>devops-web-template</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>Demo project for Spring Boot</description>
+
+    <dependencies>
+        <!-- spring boot start -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- spring boot end -->
+
+        <!-- devops-core start -->
+        <dependency>
+            <groupId>org.devops.core</groupId>
+            <artifactId>devops-core-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.devops.core</groupId>
+            <artifactId>devops-core-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.devops.core</groupId>
+            <artifactId>devops-core-ie</artifactId>
+        </dependency>
+        <!-- devops-core end -->
+
+        <!-- iweb start -->
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-auth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-file</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.devops.iweb</groupId>
+            <artifactId>devops-iweb-xxl</artifactId>
+        </dependency>
+
+        <!-- iweb end -->
+
+        <!-- mjar start -->
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-ext</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-autotest</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-message</artifactId>
+        </dependency>
+        <!-- mjar end -->
+
+        <dependency>
+            <groupId>org.devops.mjar</groupId>
+            <artifactId>devops-mjar-weixin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devops.mjar.live</groupId>
+            <artifactId>devops-mjar-live-polyv</artifactId>
+        </dependency>
+
+        <!-- devops-tool start -->
+        <dependency>
+            <groupId>org.devops.tool</groupId>
+            <artifactId>devops-tool-autocode</artifactId>
+        </dependency>
+        <!-- devops-tool end -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>sit</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>sit</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>uat</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <spring.profiles.active>prd</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+</project>

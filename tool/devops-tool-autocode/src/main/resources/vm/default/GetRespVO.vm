@@ -1,0 +1,18 @@
+package ${table.getPackages()};
+
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+#foreach($v in $table.getImportList())
+${v}
+#end
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(description = "${table.getComment()}详情")
+public class $table.getClassName()GetRespVO extends $table.getClassName(){
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+}

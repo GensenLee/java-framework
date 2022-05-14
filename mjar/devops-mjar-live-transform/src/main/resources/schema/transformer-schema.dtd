@@ -1,0 +1,59 @@
+<!ELEMENT transformers (preprocess?,postprocess?,transformer+) >
+        <!ELEMENT transformer (path,(class|manual),preprocess?,postprocess?)>
+        <!--type 定义类型
+        JClass 指定实现类方式，类必须实现 Transformer 接口
+        Parsing 在文件中定义每一个字段的映射关系
+        -->
+        <!ATTLIST transformer type (Parsing|JClass) "Parsing" >
+        <!--type=JClass 时使用class标签指定实现类全限定名-->
+        <!--type=Parsing 时使用manual标签定义请求和响应每一个字段的映射关系-->
+
+        <!--path 转化源请求路径-->
+        <!ELEMENT path (#PCDATA)>
+        <!--method 源路径请求方式 GET、POST-->
+        <!ATTLIST path
+                method (POST|GET) #REQUIRED
+                >
+
+        <!--java class 全限定名-->
+        <!ELEMENT class (#PCDATA)>
+        <!ELEMENT manual (target,request,response)>
+
+        <!ELEMENT target (#PCDATA)>
+        <!ATTLIST target
+                method (POST|GET) #REQUIRED
+                >
+        <!ELEMENT request (field)*>
+        <!ELEMENT response (field)*>
+        <!--content-type 定义接收参数和发出参数形式-->
+        <!-- body、query -->
+        <!ATTLIST request
+                from-content-type (body|query) #REQUIRED
+                to-content-type (body|query) #REQUIRED
+                >
+
+        <!ELEMENT field (field|mapper|EMPTY)*>
+        <!--如果 type=list, 需设置子节点，默认type=single -->
+        <!ATTLIST field
+                from CDATA #REQUIRED
+                to CDATA #REQUIRED
+                type (list|single) "single"
+                required (true|false) "false"
+                >
+        <!ELEMENT mapper (mapping)*>
+        <!ATTLIST mapper jmapper CDATA #IMPLIED>
+        <!-- jmapper指定字段转换器，接口com.sinmn.polyv.transform.core.FiledMapper实现类的全限定类名  -->
+        <!-- 也可通过mapping子节点指定每个值的转化-->
+        <!ELEMENT mapping (#PCDATA)>
+        <!ATTLIST mapping if CDATA #REQUIRED>
+        <!--mapping 指定转化的单个值，从上到下选中即返回，无匹配直接返回原值 -->
+        <!-- * 号匹配任何值 -->
+
+        <!--前置处理，如果有设置后置处理过程，则处理完后再返回-->
+        <!ELEMENT preprocess (processor*)>
+        <!--是否开启异步调度-->
+
+        <!--后置处理，如果有设置后置处理过程，则处理完后再返回-->
+        <!ELEMENT postprocess (processor*)>
+        <!ELEMENT processor (#PCDATA)>
+

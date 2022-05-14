@@ -1,0 +1,98 @@
+logging:
+  config: classpath:logback-boot.xml
+
+server:
+  port: 53000
+spring:
+  application:
+    name: devops-web-test
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      filters: config,stat,wall,log4j
+      initial-size: 1
+      max-active: 100
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      min-evictable-idle-time-millis: 300000
+      min-idle: 1
+      password: mysql!@#root
+      pool-prepared-statements: true
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      url: jdbc:mysql://mysql.sinmn.cn:3306/devops-test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+      username: root
+      validation-query: select 1
+      slave:
+        filters: config,stat,wall,log4j
+        initial-size: 1
+        max-active: 100
+        max-open-prepared-statements: 50
+        max-pool-prepared-statement-per-connection-size: 20
+        max-wait: 60000
+        min-evictable-idle-time-millis: 300000
+        min-idle: 1
+        password: mysql!@#root
+        pool-prepared-statements: true
+        test-on-borrow: true
+        test-on-return: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 60000
+        url: jdbc:mysql://mysql.sinmn.cn:3306/devops-test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+        username: root
+        validation-query: select 1
+#  resources:
+#    static-locations: classpath:/static/,classpath:/resources/static
+
+  #Redis服务器（IP）
+  redis:
+    host: redis.sinmn.cn
+    #Redis服务端口号
+    port: 6379
+    password: redis!@#root
+    #Redis服务器连接超时的时间（0代表不超时）
+    timeout: 0
+    #在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的
+    test-on-borrow: true
+    #连接超时时是否阻塞，false时报异常,ture阻塞直到超时, 默认true
+    block-when-exhausted: true
+    nodes:
+    lettuce:
+      pool:
+        max-wait: 4  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        min-idle: 1 # 连接池中的最小空闲连接
+        max-idle: 10 # 连接池中的最大空闲连
+        max-active: 200 # 连接池最大连接数
+        max-total: 200 # 最大空连接数
+
+
+uploadPath: E:\data\upload
+
+wx:
+  ma:
+    configs:
+        - appId: wx1eb205a93436afa1
+          secret: 7342feb06b384cf95eb4662f2e7602d1
+  pay:
+    appId: xxxxxxxxxxxxxxx
+
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:53000/xxl-job-admin
+    executor:
+      appname: xxl-job-executor-test
+      ip: null
+      port: 9999
+      logpath: /home/xhz/logs/test
+      logretentiondays: -1
+    accessToken: xxl-job-admin-sinmn
+  login:
+    username: admin
+    password: admin123456
+debug: true

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <include resource="logback-common.xml" />
+    <!-- 防止swagger打印warn信息 -->
+    <logger name="io.swagger.models.parameters" level="ERROR"/>
+
+    <logger name="******" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.devops.mjar.live.polyv" level="DEBUG"/>
+
+</configuration>

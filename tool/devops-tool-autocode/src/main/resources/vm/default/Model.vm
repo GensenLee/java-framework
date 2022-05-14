@@ -1,0 +1,80 @@
+package ${table.getPackages()};
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.devops.core.model.annotation.Column;
+#if(!$v.autoIncrement)#if($table.getPrikey().getJtype().equalsIgnoreCase("String"))import org.devops.core.model.annotation.ColumnAutoId;
+#end#end
+import org.devops.core.model.annotation.Table;
+import org.devops.core.utils.verify.VerifyField;
+import org.devops.core.utils.vo.BaseBean;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+#foreach($v in $table.getImportList())
+${v}
+#end
+
+@Table(table="${table.getName()}",create=true,comment="${table.getComment()}",parametric=true)
+@Data
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(description="${table.getComment()}")
+public class $table.getClassName() extends BaseBean{
+    /**
+    *
+    */
+    private static final long serialVersionUID = 1L;
+
+#foreach($v in $table.getItems())
+    /** $v.comment */
+    public static final String $v.getBigJavaName() = "${v.name}";
+#end
+
+	// public static String initSQL() {
+	// 	return ResourceUtil.readResourceAsString("classpath:sql/${table.getName()}.sql");
+	// }
+
+#foreach($v in $table.getItems())
+	#if($v.priKey)
+
+	/**
+	* $v.comment
+	*/
+	@Column(name = "${v.name}",jdbcType="${v.origType}",priKey=true,#if($v.autoIncrement)autoIncrement=true,#end comment="${v.comment}")
+#if(!$v.autoIncrement)#if($table.getPrikey().getJtype().equalsIgnoreCase("String"))
+	@ColumnAutoId
+#end#end
+	@ApiModelProperty("${v.comment}")
+	@VerifyField(value="${v.comment}",ignore = true)
+	private $v.jtype $v.getJavaName();
+	#else
+
+	/**
+	* $v.comment
+	*/
+	@Column(name = "${v.name}",jdbcType="${v.origType}",notNull=${v.getIsNotNull()},def="${v.def}",extra="${v.extra}",comment="${v.comment}")
+	@ApiModelProperty("${v.comment}")
+	@VerifyField(value="${v.comment}",ignore = true)
+	private $v.jtype $v.getJavaName();
+	#end
+#end
+
+#if($table.hasDict())##
+	/** 字典 **/
+	public static class Dict {
+	#foreach($item in $table.listDict())##
+	/** $item.comment */
+		public interface $item.name {
+		#foreach($field in $item.fields)##
+	/** $field.comment */
+		   #if ($field.type.equalsIgnoreCase("String")) String $field.field = "$field.value";#else byte $field.field = $field.value; #end##
+
+		#end##
+}
+
+	#end##
+}
+#end##
+
+}

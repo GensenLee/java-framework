@@ -1,0 +1,597 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.devops</groupId>
+    <artifactId>devops-parent</artifactId>
+    <version>6.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+    </parent>
+
+    <properties>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.bootstrap.ui.version>1.9.6</swagger.bootstrap.ui.version>
+        <druid.version>1.1.22</druid.version>
+        <mybatis.version>3.5.4</mybatis.version>
+        <mybatis-spring.version>2.0.4</mybatis-spring.version>
+        <aliyun.java.sdk.core.version>3.7.1</aliyun.java.sdk.core.version>
+        <aliyun.java.sdk.dysmsapi.version>1.1.0</aliyun.java.sdk.dysmsapi.version>
+        <commons.httpclient.version>3.1</commons.httpclient.version>
+        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <commons.io.version>2.4</commons.io.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <mail.version>1.4.3</mail.version>
+        <servlet.api.version>2.5</servlet.api.version>
+        <aspectj.version>1.8.9</aspectj.version>
+        <poi.version>3.17</poi.version>
+        <spring.cloud.feign.version>1.4.7.RELEASE</spring.cloud.feign.version>
+        <spring.cloud.version>2.2.2.RELEASE</spring.cloud.version>
+        <feign-form.version>3.8.0</feign-form.version>
+        <zipkin.version>1.2.5.RELEASE</zipkin.version>
+        <commons.version>3.7</commons.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <sqljdbc4.version>4.0</sqljdbc4.version>
+        <log4j.version>1.2.17</log4j.version>
+        <aliyun-sdk-oss.version>3.9.1</aliyun-sdk-oss.version>
+        <grpc.version>1.17.1</grpc.version>
+        <grpc.client.version>1.4.1.RELEASE</grpc.client.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <spring-boot-admin-server.version>2.2.3</spring-boot-admin-server.version>
+        <xxl-job.version>2.1.0</xxl-job.version>
+        <joda-time.version>2.10.5</joda-time.version>
+        <amazonaws.bom.version>1.11.327</amazonaws.bom.version>
+        <urlrewritefilter.version>4.0.4</urlrewritefilter.version>
+        <weixin-java.version>4.1.0</weixin-java.version>
+        <tencentcloudapi.version>3.1.270</tencentcloudapi.version>
+        <log4j2.version>2.17.0</log4j2.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.tuckey</groupId>
+                <artifactId>urlrewritefilter</artifactId>
+                <version>${urlrewritefilter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-client-spring-boot-starter</artifactId>
+                <version>${grpc.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-all</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+
+            <!-- oss start -->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+            <!-- oss end -->
+            <!-- sqlserver start -->
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>${sqljdbc4.version}</version>
+            </dependency>
+            <!-- sqlserver end -->
+            <!-- apectj start -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <!-- apectj end -->
+            <!-- swagger2 start -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger.bootstrap.ui.version}</version>
+            </dependency>
+            <!-- swagger2 end -->
+
+            <!-- druid start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- druid end -->
+
+            <!-- logback start -->
+<!--            <dependency>-->
+<!--                <groupId>net.logstash.logback</groupId>-->
+<!--                <artifactId>logstash-logback-encoder</artifactId>-->
+<!--                <version>${logback.encoder.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.logback-extensions</groupId>-->
+<!--                <artifactId>logback-ext-spring</artifactId>-->
+<!--                <version>${logback.ext.version}</version>-->
+<!--            </dependency>-->
+            <!-- logback end -->
+
+            <!-- mybatis begin -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!-- mybatis end -->
+
+            <!-- 阿里云短信 begin -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun.java.sdk.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>${aliyun.java.sdk.dysmsapi.version}</version>
+            </dependency>
+            <!-- 阿里云短信 end -->
+
+            <!-- commons begin -->
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${commons.httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <!-- commons end -->
+
+            <!-- fastjson begin -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- fastjson end -->
+
+            <!-- mail begin -->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
+            <!-- mail end -->
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+            </dependency>
+
+            <!-- poi start -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <!-- poi end -->
+
+            <!-- devops-core start -->
+            <dependency>
+                <groupId>org.devops.core</groupId>
+                <artifactId>devops-core-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.core</groupId>
+                <artifactId>devops-core-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.core</groupId>
+                <artifactId>devops-core-ie</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- devops-core end -->
+
+            <!-- iweb start -->
+            <dependency>
+                <groupId>org.devops.iweb</groupId>
+                <artifactId>devops-iweb-auth</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.iweb</groupId>
+                <artifactId>devops-iweb-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.iweb</groupId>
+                <artifactId>devops-iweb-file</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.iweb</groupId>
+                <artifactId>devops-iweb-xxl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.devops.iweb</groupId>
+                <artifactId>devops-iweb-operationlog</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- iweb end -->
+
+            <!-- mjar start -->
+            <dependency>
+                <groupId>org.devops.mjar</groupId>
+                <artifactId>devops-mjar-ext</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar</groupId>
+                <artifactId>devops-mjar-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar</groupId>
+                <artifactId>devops-mjar-autotest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar</groupId>
+                <artifactId>devops-mjar-message</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar</groupId>
+                <artifactId>devops-mjar-weixin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar.live</groupId>
+                <artifactId>devops-mjar-live-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar.live</groupId>
+                <artifactId>devops-mjar-live-polyv</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.devops.mjar.live</groupId>
+                <artifactId>devops-mjar-live-transform</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- mjar end -->
+
+
+            <!-- devops-tool start -->
+            <dependency>
+                <groupId>org.devops.tool</groupId>
+                <artifactId>devops-tool-autocode</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- devops-tool end -->
+
+
+            <!--spring feign form 表单提交相关 -->
+            <dependency>
+                <groupId>io.github.openfeign.form</groupId>
+                <artifactId>feign-form-spring</artifactId>
+                <version>${feign-form.version}</version>
+            </dependency>
+            <!--feign form 表单提交相关 -->
+            <dependency>
+                <groupId>io.github.openfeign.form</groupId>
+                <artifactId>feign-form</artifactId>
+                <version>${feign-form.version}</version>
+            </dependency>
+            <!-- feign-httpclient end -->
+
+            <!-- spring cloud start -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-ribbon</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-context</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-commons</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>${spring.cloud.feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>${spring.cloud.feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zipkin</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+            <!-- spring cloud end -->
+
+            <!-- apache.commons start -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+            <!-- apache.commons end -->
+
+            <!-- xxl-job start -->
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
+            <!-- xxl-job end -->
+
+            <!-- amazonaws start -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>${amazonaws.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- amazonaws end -->
+
+            <!-- weixin java start -->
+            <!-- 小程序 -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+
+            <!-- 公众号 -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+
+            <!-- 微信支付 -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+
+            <!-- 微信开放平台 -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-open</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+
+            <!-- weixin java end -->
+
+            <!--tencentcloudapi start-->
+            <dependency>
+                <groupId>com.tencentcloudapi</groupId>
+                <artifactId>tencentcloud-sdk-java</artifactId>
+                <version>${tencentcloudapi.version}</version>
+            </dependency>
+            <!--tencentcloudapi end-->
+
+            <!-- log4j start -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-core</artifactId>
+			    <version>${log4j2.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-api</artifactId>
+			    <version>${log4j2.version}</version>
+			</dependency>
+			
+			<dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>maven-jetty-plugin</artifactId>
+                    <version>${jetty.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus</name>
+            <url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Nexus</name>
+            <url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://mvn.sinmn.cn:8888/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://mvn.sinmn.cn:8888/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

@@ -1,0 +1,12 @@
+package ${table.getPackages()};
+
+
+import org.devops.core.model.core.AbstractModelRepository;
+import org.springframework.stereotype.Repository;
+#foreach($v in $table.getImportList())
+${v}
+#end
+
+@Repository
+public class $table.getClassName()Repository extends AbstractModelRepository<$table.getClassName(), $table.getPrikey().getJtype()>{
+}

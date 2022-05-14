@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transformers SYSTEM "classpath:/schema/transformer-schema.dtd">
+<transformers>
+    <transformer type="JClass">
+        <path method="GET" >/api/demo2.do</path>
+        <class>com.sinmn.polyv.transform.transformer.DemoTransformer</class>
+    </transformer>
+
+    <transformer type="Parsing">
+        <path method="POST" >/api/demo1.do</path>
+        <manual>
+            <target method="GET">/api/target2.do</target>
+            <request from-content-type="query" to-content-type="query">
+                <field from="webinar_id" to="channelId"/>
+                <field from="" to="">
+                    <mapper jmapper="com.sinmn.polyv.transform.mapper.demo"/>
+                </field>
+            </request>
+            <response>
+                <field from="code" to="code"/>
+                <field from="message" to="msg"/>
+                <field from="data" to="data">
+                    <mapper>
+                        <mapping if="live">1</mapping>
+                        <mapping if="end">3</mapping>
+                        <!-- *号匹配任何值 -->
+                        <mapping if="*">0</mapping>
+                    </mapper>
+                </field>
+            </response>
+        </manual>
+    </transformer>
+
+    <transformer type="Parsing">
+        <path method="POST" >/api/demo1.do</path>
+        <manual>
+            <target method="GET">/api/target2.do</target>
+            <request from-content-type="body" to-content-type="body">
+                <field from="webinar_id" to="channelId"/>
+                <field from="a" to="b">
+                    <mapper jmapper="com.sinmn.polyv.transform.mapper.demo"/>
+                </field>
+            </request>
+            <response>
+                <field from="code" to="code"/>
+                <field from="message" to="msg"/>
+                <field from="data" to="data">
+                    <mapper>
+                        <mapping if="live">1</mapping>
+                        <mapping if="end">3</mapping>
+                        <!-- *号匹配任何值 -->
+                        <mapping if="*">0</mapping>
+                    </mapper>
+                </field>
+            </response>
+        </manual>
+    </transformer>
+</transformers>

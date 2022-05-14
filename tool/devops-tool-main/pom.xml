@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.devops.tool</groupId>
+  <artifactId>devops-tool-main</artifactId>
+  
+	<parent>
+		<groupId>org.devops</groupId>
+		<artifactId>devops-parent</artifactId>
+		<version>6.0.0-SNAPSHOT</version>
+	 </parent>
+  	
+  <dependencies>
+  
+  		<dependency>
+			<groupId>org.devops.core</groupId>
+			<artifactId>devops-core-model</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.devops.tool</groupId>
+			<artifactId>devops-tool-autocode</artifactId>
+		</dependency>	
+		
+  </dependencies>
+  
+  <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			  </snapshots>
+		</pluginRepository>
+	</pluginRepositories> 
+
+	<distributionManagement>
+		<repository>    
+	      	<id>releases</id>    
+	      	<name>Nexus Release Repository</name>    
+	      	<url>http://mvn.sinmn.cn:8888/nexus/content/repositories/releases/</url>    
+    	</repository>    
+    	<snapshotRepository>    
+	      	<id>snapshots</id>    
+	      	<name>Nexus Snapshot Repository</name>    
+	      	<url>http://mvn.sinmn.cn:8888/nexus/content/repositories/snapshots/</url>    
+    	</snapshotRepository>    
+  	</distributionManagement>
+    
+</project>
