@@ -1,0 +1,46 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+app.logs*/
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+# *.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+.DS_Store
+.springBeans
+*.bak
+bin/
+classes/
+target/
+
+# Eclipse
+.settings
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF
+.externalToolBuilders
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea
+out/
+test-output/
+atlassian-ide-plugin.xml
+.gradletasknamecache
+
+LOG_PATH_IS_UNDEFINED/
+

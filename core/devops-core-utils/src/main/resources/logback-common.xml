@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Default logback configuration provided for import
+-->
+
+<included>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <jmxConfigurator/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+    <!-- 定义日志的根目录 -->
+    <property name="LOG_HOME" value="/data/logs"/>
+
+    <!--控制台输出-->
+    <!-- 增加日志所在行号打印以及限制输出最大长度为5000 -->
+    <property name="LOG.CONSOLE.PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) - %clr([%t]){faint} %X{log_id:-} %clr(%logger{39}){cyan}[%line] %clr(:){faint} %.-50000m%n%wEx"/>
+
+    <!--文件输出-->
+    <property name="LOG.FILE.PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p - [%t] %X{log_id:-} %logger{39}[%line] : %.-50000m%n%wEx"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${LOG.CONSOLE.PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 第一个文件输出,每天产生一个文件 -->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${springAppName:-}/app.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <!-- 保存30天的日志 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG.FILE.PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${springAppName:-}/error.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG.FILE.PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE_ERROR"/>
+    </root>
+
+    <!-- 防止swagger打印warn信息 -->
+    <logger name="io.swagger.models.parameters" level="ERROR"/>
+</included>
