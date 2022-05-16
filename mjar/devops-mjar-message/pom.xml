@@ -75,7 +75,7 @@
 		<dependency>
 			<groupId>com.aliyun</groupId>
 			<artifactId>tea-openapi</artifactId>
-			<version>0.2.2</version>
+			<version>0.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.aliyun</groupId>
@@ -84,32 +84,4 @@
 		</dependency>
 	</dependencies>
 	
-	<repositories>
-		<repository>
-			<id>nexus</id>
-			<name>Nexus</name>
-			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
-			  <releases>
-				<enabled>true</enabled>
-			  </releases>
-			  <snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			  </snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>Nexus</name>
-			<url>http://mvn.sinmn.cn:8888/nexus/content/groups/public</url>
-			  <releases>
-				<enabled>true</enabled>
-			  </releases>
-			  <snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			  </snapshots>
-		</pluginRepository>
-	</pluginRepositories> 
 </project>
