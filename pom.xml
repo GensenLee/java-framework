@@ -7,14 +7,14 @@
     <parent>
 	  <groupId>org.devops</groupId>
 	  <artifactId>devops-parent</artifactId>
-	  <version>6.0.0-SNAPSHOT</version>
+	  <version>6.0.0.RELEASE</version>
     </parent>
 
     <artifactId>devops-java-framework</artifactId>
 
     <name>java-framework</name>
     <packaging>pom</packaging>
-    <version>5.0.0</version>
+    <version>6.0.0.RELEASE</version>
 
 
     <dependencyManagement>

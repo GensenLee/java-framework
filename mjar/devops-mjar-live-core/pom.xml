@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.devops</groupId>
         <artifactId>devops-parent</artifactId>
-        <version>6.0.0-SNAPSHOT</version>
+        <version>6.0.0.RELEASE</version>
     </parent>
     <dependencies>
         <dependency>
