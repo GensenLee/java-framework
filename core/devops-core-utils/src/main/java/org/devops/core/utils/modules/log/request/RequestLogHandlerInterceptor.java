@@ -44,6 +44,7 @@ public class RequestLogHandlerInterceptor extends AbstractInterceptor {
         MDC.put(DEFAULT_KEY, requestId);
         log.info("request url [{}] query [{}]", request.getRequestURL(), request.getQueryString());
         RequestGlobalHandler.set(request, response, requestId);
+        RequestHelper.setRequestId(requestId);
         return true;
     }
 
@@ -51,5 +52,6 @@ public class RequestLogHandlerInterceptor extends AbstractInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         MDC.remove(DEFAULT_KEY);
         RequestGlobalHandler.clean();
+        RequestHelper.clean();
     }
 }

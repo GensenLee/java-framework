@@ -1,5 +1,8 @@
 package org.devops.core.utils.util;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -9,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RequestUtil {
+
+	private static final ThreadLocal<String> REQUEST_IDS = new ThreadLocal<>();
 
 	/**
 	 * 获取域名
@@ -118,5 +123,48 @@ public class RequestUtil {
 			response.flushBuffer();
 		} catch (IOException ignored) {
 		}
+	}
+
+	/**
+	 * 获取当前请求 HttpServletRequest
+	 * @return
+	 */
+	public static HttpServletRequest getRequest() {
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		if (servletRequestAttributes != null) {
+			return servletRequestAttributes.getRequest();
+		}
+		return null;
+	}
+
+	/**
+	 * 获取当前请求 HttpServletResponse
+	 * @return
+	 */
+	public static HttpServletResponse getResponse() {
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		if (servletRequestAttributes != null) {
+			return servletRequestAttributes.getResponse();
+		}
+		return null;
+	}
+
+	/**
+	 * @param requestId
+	 */
+	protected static void setRequestId(String requestId) {
+		REQUEST_IDS.set(requestId);
+	}
+
+	protected static void clean() {
+		REQUEST_IDS.remove();
+	}
+
+	/**
+	 * 获取当前请求id
+	 * @return
+	 */
+	public static String getRequestId(){
+		return REQUEST_IDS.get();
 	}
 }

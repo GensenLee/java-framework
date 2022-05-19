@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author GENSEN
  * @date 2021/11/5 9:56
  * @description：请求持有
+ *
+ * 替代 {@link org.devops.core.utils.util.RequestUtil}
  */
+@Deprecated
 public class RequestGlobalHandler {
 
     private static final ThreadLocal<HttpServletRequest> REQUESTS = new ThreadLocal<>();
